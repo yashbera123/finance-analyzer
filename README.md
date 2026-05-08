@@ -39,6 +39,14 @@ Full-stack finance analysis app for uploading transaction files, parsing and cat
 - Data: SQLite for local development, PostgreSQL for production
 - Deployment: Vercel for `client/`, Render for `server/`
 
+## Live Demo
+
+Access the live application at: [https://client-six-rho-98.vercel.app/](https://client-six-rho-98.vercel.app/)
+
+## Sample Dataset
+
+Download a sample transaction dataset to test the application: [Google Drive Link](https://drive.google.com/file/d/1rzVFTkBZ-VS6ay0WC_E7NU-2W1f-7b79/view?usp=sharing)
+
 ## Local Development
 
 Backend:
