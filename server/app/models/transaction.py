@@ -72,4 +72,4 @@ class TransactionRecord(Base):
     upload = relationship("FileUpload", back_populates="transactions")
 
     def __repr__(self) -> str:
-        return f"<Transaction row={self.row_index} {self.description[:30]} ${self.amount}>"
+        return f"<Transaction row={self.row_index} {self.description[:30]} ₹{self.amount}>"
