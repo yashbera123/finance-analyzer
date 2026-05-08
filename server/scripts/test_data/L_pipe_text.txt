@@ -1,0 +1,3 @@
+Date|Narration|Amount
+2024-11-01|Wallet Topup|-300.00
+2024-11-02|Interest Credit|12.45

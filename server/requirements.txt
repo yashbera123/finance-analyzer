@@ -1,0 +1,35 @@
+# Core
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic-settings
+python-multipart
+gunicorn
+
+# Database
+sqlalchemy
+greenlet
+asyncpg
+aiosqlite
+alembic
+
+# AI (future)
+openai
+google-generativeai
+
+# Data processing
+pandas
+openpyxl
+xlrd
+scikit-learn
+
+# Document processing
+pdfplumber
+PyPDF2
+python-docx
+
+# Validation
+pydantic
+
+# PDF reports
+reportlab

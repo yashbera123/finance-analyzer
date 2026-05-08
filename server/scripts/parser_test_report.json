@@ -1,0 +1,805 @@
+[
+  {
+    "dataset": "A_standard_csv",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/A_standard.csv",
+    "content_type": "text/csv; charset=utf-8",
+    "notes": "Baseline schema with explicit Type column.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "Amount",
+      "Type"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "Type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-01-01",
+        "description": "Grocery Store",
+        "amount": 50.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-01-01",
+          "Description": "Grocery Store",
+          "Amount": "-50.0",
+          "Type": "debit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-01-02",
+        "description": "Salary",
+        "amount": 2000.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-01-02",
+          "Description": "Salary",
+          "Amount": "2000.0",
+          "Type": "credit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "B_different_column_names",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/B_different_cols.csv",
+    "content_type": "application/csv",
+    "notes": "Alias columns should still map correctly.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "txn_date",
+      "details",
+      "amt",
+      "transaction_type"
+    ],
+    "detected_columns": {
+      "date_column": "txn_date",
+      "description_column": "details",
+      "amount_column": "amt",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "transaction_type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-01-15",
+        "description": "Amazon Purchase",
+        "amount": 120.5,
+        "transaction_type": "debit",
+        "original_data": {
+          "txn_date": "01-15-2024",
+          "details": "Amazon Purchase",
+          "amt": "120.5",
+          "transaction_type": "DR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-01-16",
+        "description": "Refund",
+        "amount": 45.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "txn_date": "01-16-2024",
+          "details": "Refund",
+          "amt": "45.0",
+          "transaction_type": "CR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "C_no_type_sign_inference",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/C_no_type_col.csv",
+    "content_type": "text/csv",
+    "notes": "Type must be inferred from the sign of Amount.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "Amount"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": null,
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-02-01",
+        "description": "Netflix",
+        "amount": 15.99,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-02-01",
+          "Description": "Netflix",
+          "Amount": "-15.99"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-02-02",
+        "description": "Deposit",
+        "amount": 1000.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-02-02",
+          "Description": "Deposit",
+          "Amount": "1000.0"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "D_indian_bank_format",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/D_indian_bank.csv",
+    "content_type": "text/csv",
+    "notes": "Withdrawal/Deposit columns should infer debit vs credit.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Narration",
+      "Withdrawal",
+      "Deposit",
+      "Balance"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Narration",
+      "amount_column": "Balance",
+      "debit_column": "Withdrawal",
+      "credit_column": "Deposit",
+      "type_column": null,
+      "confidence": 1.0
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-03-15",
+        "description": "UPI/ZOMATO/1234",
+        "amount": 450.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "15/03/2024",
+          "Narration": "UPI/ZOMATO/1234",
+          "Withdrawal": "450.0",
+          "Deposit": null,
+          "Balance": "10000.0"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-03-16",
+        "description": "NEFT-SALARY-XYZ",
+        "amount": 50000.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "16/03/2024",
+          "Narration": "NEFT-SALARY-XYZ",
+          "Withdrawal": null,
+          "Deposit": "50000.0",
+          "Balance": "60000.0"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "E_upi_wallet_format",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/E_upi_wallet.csv",
+    "content_type": "text/csv",
+    "notes": "UPI-style descriptions should still parse cleanly.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Transaction",
+      "Amount",
+      "Type"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Transaction",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "Type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-04-01",
+        "description": "UPI/SWIGGY/ORDER999",
+        "amount": 250.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-04-01",
+          "Transaction": "UPI/SWIGGY/ORDER999",
+          "Amount": "-250.0",
+          "Type": "debit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-04-02",
+        "description": "CASHBACK/PAYTM",
+        "amount": 50.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-04-02",
+          "Transaction": "CASHBACK/PAYTM",
+          "Amount": "50.0",
+          "Type": "credit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "F_excel_messy_rows",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/F_messy_excel.xlsx",
+    "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "notes": "Blank rows and formatted numbers should be cleaned.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "Amount",
+      "Type"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "Type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-05-01",
+        "description": "Rent",
+        "amount": 1500.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-05-01",
+          "Description": "Rent",
+          "Amount": "1,500.00",
+          "Type": "debit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-05-03",
+        "description": "Bonus",
+        "amount": 2500.5,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-05-03",
+          "Description": "Bonus",
+          "Amount": "2,500.50",
+          "Type": "credit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "G_credit_card_statement",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/G_credit_card.csv",
+    "content_type": "text/csv",
+    "notes": "Positive charges should be debit; negative payments credit.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Transaction Date",
+      "Post Date",
+      "Description",
+      "Amount"
+    ],
+    "detected_columns": {
+      "date_column": "Transaction Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": null,
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-06-01",
+        "description": "Uber Ride",
+        "amount": 25.5,
+        "transaction_type": "debit",
+        "original_data": {
+          "Transaction Date": "2024-06-01",
+          "Post Date": "2024-06-03",
+          "Description": "Uber Ride",
+          "Amount": "25.5"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-06-02",
+        "description": "Payment Thank You",
+        "amount": 100.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Transaction Date": "2024-06-02",
+          "Post Date": "2024-06-04",
+          "Description": "Payment Thank You",
+          "Amount": "-100.0"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "H_semicolon_delimited",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/H_semicolon.csv",
+    "content_type": "text/csv",
+    "notes": "Delimiter must be auto-detected.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "Amount",
+      "Type"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "Type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-07-01",
+        "description": "Gym Membership",
+        "amount": 50.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-07-01",
+          "Description": "Gym Membership",
+          "Amount": "-50.0",
+          "Type": "debit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-07-02",
+        "description": "Dividend",
+        "amount": 10.5,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-07-02",
+          "Description": "Dividend",
+          "Amount": "10.5",
+          "Type": "credit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "I_no_header_dataset",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/I_no_header.csv",
+    "content_type": "text/csv",
+    "notes": "Headerless files should retain all rows and infer columns by content.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "column_0",
+      "column_1",
+      "column_2",
+      "column_3"
+    ],
+    "detected_columns": {
+      "date_column": "column_0",
+      "description_column": "column_1",
+      "amount_column": "column_2",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "column_3",
+      "confidence": 0.62
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-08-01",
+        "description": "Coffee Shop",
+        "amount": 5.5,
+        "transaction_type": "debit",
+        "original_data": {
+          "column_0": "2024-08-01",
+          "column_1": "Coffee Shop",
+          "column_2": "-5.50",
+          "column_3": "debit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-08-02",
+        "description": "Sold item online",
+        "amount": 150.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "column_0": "2024-08-02",
+          "column_1": "Sold item online",
+          "column_2": "150.00",
+          "column_3": "credit"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "J_messy_spaced_dr_cr",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/J_messy_spaced.csv",
+    "content_type": "text/csv",
+    "notes": "Whitespace and DR/CR columns should normalize cleanly.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "DR",
+      "CR"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": null,
+      "debit_column": "DR",
+      "credit_column": "CR",
+      "type_column": null,
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-09-01",
+        "description": "Electric Bill",
+        "amount": 75.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-09-01",
+          "Description": "Electric Bill",
+          "DR": "75.00",
+          "CR": null
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-09-02",
+        "description": "Salary Deposit",
+        "amount": 3000.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-09-02",
+          "Description": "Salary Deposit",
+          "DR": null,
+          "CR": "3000.00"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "K_tsv_export",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/K_tsv_export.tsv",
+    "content_type": "text/tab-separated-values; charset=utf-8",
+    "notes": "Tab-separated exports should be accepted and parsed.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "txn_date",
+      "details",
+      "amt",
+      "transaction_type"
+    ],
+    "detected_columns": {
+      "date_column": "txn_date",
+      "description_column": "details",
+      "amount_column": "amt",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "transaction_type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-10-01",
+        "description": "Consulting Fee",
+        "amount": 15000.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "txn_date": "2024/10/01",
+          "details": "Consulting Fee",
+          "amt": "15000.0",
+          "transaction_type": "CR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-10-02",
+        "description": "Cloud Hosting",
+        "amount": 799.99,
+        "transaction_type": "debit",
+        "original_data": {
+          "txn_date": "2024/10/02",
+          "details": "Cloud Hosting",
+          "amt": "-799.99",
+          "transaction_type": "DR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "L_pipe_text_export",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/L_pipe_text.txt",
+    "content_type": "text/plain; charset=utf-8",
+    "notes": "Plain-text exports should infer pipe delimiters and amount sign.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Narration",
+      "Amount"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Narration",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": null,
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-11-01",
+        "description": "Wallet Topup",
+        "amount": 300.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-11-01",
+          "Narration": "Wallet Topup",
+          "Amount": "-300.00"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-11-02",
+        "description": "Interest Credit",
+        "amount": 12.45,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-11-02",
+          "Narration": "Interest Credit",
+          "Amount": "12.45"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  },
+  {
+    "dataset": "M_macro_enabled_excel",
+    "source_file": "/Users/saiabhinavbankuru/Desktop/Resume_projects/finance-analyzer-v2/backend/scripts/test_data/M_macro_workbook.xlsm",
+    "content_type": "application/vnd.ms-excel.sheet.macroEnabled.12",
+    "notes": "Macro-enabled Excel files should parse like standard spreadsheets.",
+    "status": "PASS",
+    "error_reason": null,
+    "what_broke": [],
+    "upload_extension_allowed": true,
+    "upload_content_type_allowed": true,
+    "dataframe_columns": [
+      "Date",
+      "Description",
+      "Amount",
+      "Type"
+    ],
+    "detected_columns": {
+      "date_column": "Date",
+      "description_column": "Description",
+      "amount_column": "Amount",
+      "debit_column": null,
+      "credit_column": null,
+      "type_column": "Type",
+      "confidence": 0.75
+    },
+    "row_count": 2,
+    "transactions_total": 2,
+    "transactions_valid": 2,
+    "parsed_output_preview": [
+      {
+        "row_index": 1,
+        "date": "2024-12-01",
+        "description": "Insurance Premium",
+        "amount": 1200.0,
+        "transaction_type": "debit",
+        "original_data": {
+          "Date": "2024-12-01",
+          "Description": "Insurance Premium",
+          "Amount": "(1,200.00)",
+          "Type": "DR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      },
+      {
+        "row_index": 2,
+        "date": "2024-12-02",
+        "description": "Expense Reversal",
+        "amount": 350.0,
+        "transaction_type": "credit",
+        "original_data": {
+          "Date": "2024-12-02",
+          "Description": "Expense Reversal",
+          "Amount": "350.00",
+          "Type": "CR"
+        },
+        "is_valid": true,
+        "validation_notes": []
+      }
+    ],
+    "issues": []
+  }
+]
